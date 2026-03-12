@@ -1,0 +1,9 @@
+.title{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    font-family: Arial, sans-serif;
+    color:rgb(150, 78, 201);
+    font-weight: 600;
+    font-size: 35px;
+}
