@@ -26,5 +26,52 @@
                 <img src="assets/icons/notifications.svg">
             </div>
         </div>
+        <div class="dashboard-header">
+            <h2>Dashboard Overview</h2>
+            <div class="period-select">
+                <label>Period:</label>
+                <input type="month" id="period">
+            </div>
+        </div>
+        <div class="stat-cards">
+            <div class="card">
+                <div class="card-icon purple">
+                    <img src="assets/icons/money.svg">
+                </div>
+                <div class="card-text">
+                    <h4>Total Spent</h4>
+                    <p>1240.50 RON</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon green">
+                    <img src="assets/icons/categories.svg">
+                </div>
+                <div class="card-text">
+                    <h4>Top Category</h4>
+                    <p>Food</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon yellow">
+                    <img src="assets/icons/document.svg">
+                </div>
+                
+                <div class="card-text">
+                    <h4>Number of Receipts</h4>
+                    <p>42</p>
+                </div>
+            </div>
+        </div>
+        <div class="charts">
+            <div class="chart-card">
+                <h3>Spending by Category</h3>
+                <canvas></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>Categorical Brakedown (RON)</h3>
+                <canvas></canvas>
+            </div>
+        </div>
     </body>
 </html>

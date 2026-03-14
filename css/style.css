@@ -1,3 +1,9 @@
+
+body{
+    background-color: #fbfbfb;
+}
+
+
 .title span{
 
     font-family: Arial, sans-serif;
@@ -11,7 +17,7 @@
     flex-direction: row;
     justify-content: flex-start;
     border-bottom: 1px solid rgb(180, 180, 180);
-    
+    background-color: white;
 }
 
 *{
@@ -70,4 +76,108 @@
 .nav-bar-notifications img{
     width: 35px;
     height: 35px;
+}
+
+.dashboard-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 50px;
+    padding-right: 100px;
+    padding-top: 50px
+}
+
+.dashboard-header h2{
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+
+
+
+.period-select label{
+    font-family: Arial, sans-serif;
+    color: rgb(110,110,110);
+    font-weight: 550;
+    font-size: 16px;
+    padding-right: 5px;
+}
+
+.period-select input{
+    padding:8px 12px;
+    border:1px solid #dcdcdc;
+    border-radius:8px;
+    background:white;
+    font-size:14px;
+    cursor:pointer;
+    transition:border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.period-select input:hover{
+    border-color:#bdbdbd;
+}
+
+.stat-cards{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom:30px;
+    margin-top: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+
+.card{
+    display: grid;
+    grid-template-columns: 12% 88%;
+    background: white;
+    border-radius: 10px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.08);
+    padding: 15px;
+}
+.card img{
+    width: 20px;
+}
+
+.card-icon{
+    width:40px;
+    height:40px;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.purple{
+    background:#e7e9ff;
+}
+
+.green{
+    background:#dff5ea;
+}
+
+.yellow{
+    background:#fff1db;
+}
+
+.charts{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin: 40px;
+}
+
+.chart-card{
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+
+.chart-card h3{
+    font-family: Arial, sans-serif;
+    font-weight: 550;
+    font-size: 18px;
 }
