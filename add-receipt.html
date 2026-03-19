@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Budget Tracker</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/add-receipt.css">
+        <script src="scripts/form-type.js" defer></script>
+        <script src="scripts/add-receipt.js" defer></script>
+    </head>
+    <body>
+        <div class="nav-bar">
+            <div class="title">
+                <span>Budget Tracker</span>
+                
+            </div>
+            <div class="nav-bar-item">
+                <span><a href="index.html">Dashboard</a></span>
+            </div>
+            <div class="nav-bar-item">
+                <span>Receipts</span>
+            </div>
+            <div class="nav-bar-item">
+                <span><a href="add-receipt.html">Add Receipt</a></span>
+            </div>
+            <div class="nav-bar-item">
+                <span>Categories</span>
+            </div>
+            <div class="nav-bar-notifications">
+                <img src="assets/icons/notifications.svg">
+            </div>
+        </div>
+        <div class="add-receipt-header">
+            <h2>Add Receipt</h2>
+        </div>
+        <div class="add-receipt-form">
+            <form id="receipt-form">
+                <label for="merchant">Store</label>
+                <input type="text">
+                <label for="receipt-date">Date</label>
+                <input type="date">
+                <label for="payment">Payment method</label>
+                <select name="payment" id="payment" form="receipt-form">
+                    <option value="card" selected>Card</option>
+                    <option value="cash">Cash</option>
+                </select>
+                <label for="currency-receipt">Currency</label>
+                <select name="currency-receipt" id="currency-receipt" form="receipt-form">
+                    <option value="ron" selected>RON</option>
+                    <option value="usd">USD</option>
+                    <option value="eur">EUR</option>
+                </select>
+                <label for="form-type">Input Type</label>
+                <select name="form-type" id="form-type" form="receipt-form">
+                    <option value="manual" selected>Manual</option>
+                    <option value="auto">Total</option>
+                </select>
+                <div class="form-auto">
+                    <label for="form-auto">Category</label>
+                    <select name="category" id="category" form="receipt-form">
+                        <option value="food">Food</option>
+                        <option value="transport">Transport</option>
+                        <option value="take-out">Take-out</option>
+                    </select>
+                    <label for="total">Total</label>
+                    <input type="number">
+                </div>
+                <div class="form-manual">
+                    <table class="items-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Qty</th>
+                                <th>Price</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                    
+                        <tbody id="items-body"></tbody>
+                    </table>
+                    <button type="button" id="add-item-btn">Add Item</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+.add-receipt-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 50px;
+    padding-right: 100px;
+    padding-top: 50px
+}
+
+.add-receipt-header h2{
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+.add-receipt-form form{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-auto,
+.form-manual{
+    display: none;
+}
