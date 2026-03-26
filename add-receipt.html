@@ -34,51 +34,84 @@
         </div>
         <div class="add-receipt-form">
             <form id="receipt-form">
-                <label for="merchant">Store</label>
-                <input type="text">
-                <label for="receipt-date">Date</label>
-                <input type="date">
-                <label for="payment">Payment method</label>
-                <select name="payment" id="payment" form="receipt-form">
-                    <option value="card" selected>Card</option>
-                    <option value="cash">Cash</option>
-                </select>
-                <label for="currency-receipt">Currency</label>
-                <select name="currency-receipt" id="currency-receipt" form="receipt-form">
-                    <option value="ron" selected>RON</option>
-                    <option value="usd">USD</option>
-                    <option value="eur">EUR</option>
-                </select>
-                <label for="form-type">Input Type</label>
-                <select name="form-type" id="form-type" form="receipt-form">
-                    <option value="manual" selected>Manual</option>
-                    <option value="auto">Total</option>
-                </select>
-                <div class="form-auto">
-                    <label for="form-auto">Category</label>
-                    <select name="category" id="category" form="receipt-form">
-                        <option value="food">Food</option>
-                        <option value="transport">Transport</option>
-                        <option value="take-out">Take-out</option>
+                <div class="element-add-receipt">
+                    <label for="merchant">Store</label>
+                    <input type="text">
+                </div>
+                
+                <div class="element-add-receipt">
+                    <label for="receipt-date">Date</label>
+                    <input type="date">
+                </div>
+                
+                <div class="element-add-receipt">
+                    <label for="payment">Payment method</label>
+                    <select name="payment" id="payment" form="receipt-form">
+                        <option value="card" selected>Card</option>
+                        <option value="cash">Cash</option>
                     </select>
-                    <label for="total">Total</label>
-                    <input type="number">
                 </div>
-                <div class="form-manual">
-                    <table class="items-table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Qty</th>
-                                <th>Price</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                    
-                        <tbody id="items-body"></tbody>
-                    </table>
-                    <button type="button" id="add-item-btn">Add Item</button>
+                
+
+                <div class="element-add-receipt">
+                    <label for="currency-receipt">Currency</label>
+                    <select name="currency-receipt" id="currency-receipt" form="receipt-form">
+                        <option value="ron" selected>RON</option>
+                        <option value="usd">USD</option>
+                        <option value="eur">EUR</option>
+                    </select>
                 </div>
+
+                <div class="element-add-receipt">
+                    <label for="form-type">Input Type</label>
+                    <select name="form-type" id="form-type" form="receipt-form">
+                        <option value="manual" selected>Manual</option>
+                        <option value="auto">Total</option>
+                    </select>
+                </div>
+
+                    <div class="form-auto">
+                        <div class="element-add-receipt">
+                            <label for="form-auto">Category</label>
+                            <select name="category" id="category" form="receipt-form">
+                                <option value="food">Food</option>
+                                <option value="transport">Transport</option>
+                                <option value="take-out">Take-out</option>
+                            </select>
+                            <label for="total">Total</label>
+                            <input type="number">
+                        </div>
+                    </div>
+
+                <div class="element-add-receipt">
+                    <div class="form-manual">
+                        <table class="items-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Qty</th>
+                                    <th>Price</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        
+                            <tbody id="items-body">
+                                <td><input type="text"></td>
+                                <td><input type="number" value="1"></td>
+                                <td><input type="number" step="0.01"></td>
+                                <td><select><option value="food">Food</option>
+                                <option value="transport">Transport</option>
+                                <option value="take-out">Take-out</option></select></td>
+                                <td><button class="remove-item">✖</button></td>
+                            </tbody>
+                        </table>
+                        <button type="button" id="add-item-btn">Add Item</button>
+                    </div>
+                </div>
+                <div class="element-add-receipt">
+                    <button type="submit" class="submit-button">Submit</button>
+                </div>
+
             </form>
         </div>
     </body>
