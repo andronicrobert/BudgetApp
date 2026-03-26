@@ -16,9 +16,32 @@
 .add-receipt-form form{
     display: flex;
     flex-direction: column;
+    padding: 50px;
+    padding-top:30px;
+    font-family: Arial, sans-serif;
+    font-size: 17px;
 }
 
+.add-receipt-form {
+    width: 38%;
+}
 .form-auto,
 .form-manual{
     display: none;
 }
+
+.submit-button{
+    width:30%;
+}
+
+.element-add-receipt{
+    display:flex;
+    flex-direction: column;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.add-receipt-form td{
+    padding:5px;
+}
+    
