@@ -3,27 +3,34 @@
     <head>
         <title>Budget Tracker</title>
         <link rel="stylesheet" href="css/style.css">
+        <script src="scripts/data.js"></script>
+        <script src="scripts/auth.js"></script>
+        <script src="scripts/nav.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="scripts/dashboard.js" defer></script>
     </head>
     <body>
         <div class="nav-bar">
             <div class="title">
                 <span>Budget Tracker</span>
-                
             </div>
             <div class="nav-bar-item">
                 <span><a href="index.html">Dashboard</a></span>
             </div>
             <div class="nav-bar-item">
-                <span>Receipts</span>
+                <span><a href="receipts.html">Receipts</a></span>
             </div>
             <div class="nav-bar-item">
                 <span><a href="add-receipt.html">Add Receipt</a></span>
             </div>
             <div class="nav-bar-item">
-                <span>Categories</span>
+                <span><a href="categories.html">Categories</a></span>
             </div>
-            <div class="nav-bar-notifications">
-                <img src="assets/icons/notifications.svg">
+            <div class="nav-bar-right">
+                <a href="profile.html" class="nav-user" id="nav-user"></a>
+                <div class="nav-bar-notifications">
+                    <img src="assets/icons/notifications.svg">
+                </div>
             </div>
         </div>
         <div class="dashboard-header">
@@ -40,7 +47,7 @@
                 </div>
                 <div class="card-text">
                     <h4>Total Spent</h4>
-                    <p>1240.50 RON</p>
+                    <p id="total-spent">—</p>
                 </div>
             </div>
             <div class="card">
@@ -49,28 +56,27 @@
                 </div>
                 <div class="card-text">
                     <h4>Top Category</h4>
-                    <p>Food</p>
+                    <p id="top-category">—</p>
                 </div>
             </div>
             <div class="card">
                 <div class="card-icon yellow">
                     <img src="assets/icons/document.svg">
                 </div>
-                
                 <div class="card-text">
                     <h4>Number of Receipts</h4>
-                    <p>42</p>
+                    <p id="num-receipts">—</p>
                 </div>
             </div>
         </div>
         <div class="charts">
             <div class="chart-card">
                 <h3>Spending by Category</h3>
-                <canvas></canvas>
+                <canvas id="bar-chart"></canvas>
             </div>
             <div class="chart-card">
-                <h3>Categorical Brakedown (RON)</h3>
-                <canvas></canvas>
+                <h3>Categorical Breakdown</h3>
+                <canvas id="pie-chart"></canvas>
             </div>
         </div>
     </body>
