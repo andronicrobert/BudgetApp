@@ -1,0 +1,249 @@
+
+.categories-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 32px 12px;
+}
+
+.categories-header h2 {
+    margin: 0;
+}
+
+.add-category-btn {
+    background-color: rgb(150, 78, 201);
+    color: white;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.add-category-btn:hover {
+    background-color: rgb(120, 55, 170);
+}
+
+
+.type-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 0 32px 24px;
+}
+
+.type-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-left: 5px solid transparent;
+}
+
+.type-card.need {
+    border-left-color: #34d399;
+}
+
+.type-card.want {
+    border-left-color: #fbbf24;
+}
+
+.type-card h4 {
+    margin: 0 0 6px;
+    font-size: 14px;
+    color: #666;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.type-card p {
+    margin: 0 0 4px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #222;
+}
+
+.type-card span {
+    font-size: 13px;
+    color: #999;
+}
+
+
+.categories-table-wrapper {
+    padding: 0 32px 32px;
+}
+
+.categories-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.categories-table thead {
+    background-color: #f0f0f0;
+}
+
+.categories-table th,
+.categories-table td {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.categories-table th {
+    font-weight: 600;
+    color: #444;
+}
+
+.categories-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+.badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge.need {
+    background: #dff5ea;
+    color: #1a7a4a;
+}
+
+.badge.want {
+    background: #fff1db;
+    color: #a05e00;
+}
+
+
+.action-btn {
+    border: none;
+    padding: 6px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-right: 6px;
+    transition: background 0.2s;
+}
+
+.rename-btn {
+    background-color: #e8f0fe;
+    color: #1a73e8;
+}
+
+.rename-btn:hover {
+    background-color: #d2e3fc;
+}
+
+.delete-cat-btn {
+    background-color: #fde8e8;
+    color: #e74c3c;
+}
+
+.delete-cat-btn:hover {
+    background-color: #fbd0d0;
+}
+
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal {
+    background: white;
+    border-radius: 12px;
+    padding: 32px;
+    width: 400px;
+    max-width: 90vw;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.15s;
+}
+
+.modal-close:hover {
+    color: #333;
+}
+
+.modal h3 {
+    margin: 0 0 20px;
+    font-size: 20px;
+}
+
+.modal-field {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.modal-field label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+}
+
+.modal-field input,
+.modal-field select {
+    padding: 9px 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 7px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.modal-field input:focus,
+.modal-field select:focus {
+    border-color: rgb(150, 78, 201);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+.save-btn {
+    background-color: rgb(150, 78, 201);
+    color: white;
+    border: none;
+    padding: 9px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.save-btn:hover {
+    background-color: rgb(120, 55, 170);
+}

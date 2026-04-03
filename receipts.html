@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Budget Tracker - Receipts</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/receipts.css">
+        <script src="scripts/data.js"></script>
+        <script src="scripts/auth.js"></script>
+        <script src="scripts/nav.js" defer></script>
+        <script src="scripts/receipts.js" defer></script>
+    </head>
+    <body>
+        <div class="nav-bar">
+            <div class="title">
+                <span>Budget Tracker</span>
+            </div>
+            <div class="nav-bar-item">
+                <span><a href="index.html">Dashboard</a></span>
+            </div>
+            <div class="nav-bar-item active">
+                <span><a href="receipts.html">Receipts</a></span>
+            </div>
+            <div class="nav-bar-item">
+                <span><a href="add-receipt.html">Add Receipt</a></span>
+            </div>
+            <div class="nav-bar-item">
+                <span><a href="categories.html">Categories</a></span>
+            </div>
+            <div class="nav-bar-right">
+                <a href="profile.html" class="nav-user" id="nav-user"></a>
+                <div class="nav-bar-notifications">
+                    <img src="assets/icons/notifications.svg">
+                </div>
+            </div>
+        </div>
+
+        <div class="receipts-header">
+            <h2>Receipts</h2>
+            <button id="delete-selected-btn" class="delete-selected-btn" disabled>Delete Selected</button>
+        </div>
+
+        <div class="receipts-table-wrapper">
+            <table class="receipts-table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="select-all"></th>
+                        <th>Merchant</th>
+                        <th>Category</th>
+                        <th>Total</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="receipts-body"></tbody>
+            </table>
+        </div>
+
+        <div class="modal-overlay" id="modal-overlay">
+            <div class="modal">
+                <button class="modal-close" id="modal-close">✖</button>
+                <h3 id="modal-merchant"></h3>
+                <div class="modal-meta">
+                    <span id="modal-date"></span>
+                    <span id="modal-payment"></span>
+                    <span id="modal-currency"></span>
+                </div>
+                <div class="modal-category">
+                    <strong>Category:</strong> <span id="modal-category"></span>
+                </div>
+                <table class="modal-items-table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="modal-items-body"></tbody>
+                </table>
+                <div class="modal-total">
+                    <strong>Total: <span id="modal-total"></span></strong>
+                </div>
+                <div class="modal-actions">
+                    <button class="edit-btn" id="modal-edit-btn">Edit</button>
+                    <button class="delete-btn" id="modal-delete-btn">Delete</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

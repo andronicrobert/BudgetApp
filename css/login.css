@@ -1,0 +1,94 @@
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fbfbfb;
+}
+
+.login-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    padding: 48px 40px;
+    width: 400px;
+    max-width: 90vw;
+}
+
+.login-logo span {
+    font-family: Arial, sans-serif;
+    color: rgb(150, 78, 201);
+    font-weight: 600;
+    font-size: 26px;
+}
+
+.login-card h2 {
+    font-family: Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #222;
+    margin-top: 20px;
+    margin-bottom: 4px;
+}
+
+.login-subtitle {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 28px;
+}
+
+.login-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.login-field label {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+}
+
+.login-field input {
+    padding: 10px 14px;
+    border: 1px solid #dcdcdc;
+    border-radius: 7px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.login-field input:focus {
+    border-color: rgb(150, 78, 201);
+}
+
+.login-error {
+    display: none;
+    color: #e74c3c;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.login-btn {
+    width: 100%;
+    background-color: rgb(150, 78, 201);
+    color: white;
+    border: none;
+    padding: 11px;
+    border-radius: 7px;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 4px;
+}
+
+.login-btn:hover {
+    background-color: rgb(120, 55, 170);
+}
