@@ -1,0 +1,240 @@
+.profile-header {
+    padding: 24px 32px 12px;
+}
+
+.profile-header h2 {
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+
+.profile-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 24px;
+    margin: 0 32px 32px;
+    align-items: start;
+}
+
+
+.profile-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+.profile-card h4 {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 16px;
+}
+
+.profile-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-card-header h4 {
+    margin-bottom: 0;
+}
+
+
+.profile-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgb(150, 78, 201);
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+}
+
+.profile-left .profile-card {
+    text-align: center;
+}
+
+.profile-left .profile-card h3 {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 4px;
+}
+
+.profile-left .profile-card p {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 20px;
+}
+
+
+.logout-btn {
+    width: 100%;
+    background: #fde8e8;
+    color: #e74c3c;
+    border: none;
+    padding: 10px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.logout-btn:hover {
+    background: #fbd0d0;
+}
+
+
+.stats-card {
+    text-align: left;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.stat-row:last-child {
+    border-bottom: none;
+}
+
+.stat-row span {
+    color: #777;
+}
+
+.stat-row strong {
+    color: #222;
+}
+
+
+.settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.settings-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.settings-row label {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.settings-row input,
+.settings-row select {
+    padding: 9px 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 7px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    background: white;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.settings-row input:disabled,
+.settings-row select:disabled {
+    background: #fafafa;
+    color: #444;
+    border-color: transparent;
+}
+
+.settings-row input:focus,
+.settings-row select:focus {
+    border-color: rgb(150, 78, 201);
+}
+
+
+
+.edit-toggle-btn {
+    background: #f0e6fa;
+    color: rgb(150, 78, 201);
+    border: none;
+    padding: 7px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.edit-toggle-btn:hover {
+    background: #e2d0f5;
+}
+
+
+
+.settings-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+.save-settings-btn {
+    background: rgb(150, 78, 201);
+    color: white;
+    border: none;
+    padding: 9px 22px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.save-settings-btn:hover {
+    background: rgb(120, 55, 170);
+}
+
+.cancel-settings-btn {
+    background: #f0f0f0;
+    color: #555;
+    border: none;
+    padding: 9px 22px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.cancel-settings-btn:hover {
+    background: #e5e5e5;
+}
+
+
+.nav-user-active {
+    color: rgb(150, 78, 201) !important;
+    font-weight: 700 !important;
+}

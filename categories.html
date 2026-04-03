@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Budget Tracker - Categories</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/categories.css">
+        <script src="scripts/data.js"></script>
+        <script src="scripts/auth.js"></script>
+        <script src="scripts/nav.js" defer></script>
+        <script src="scripts/categories.js" defer></script>
+    </head>
+    <body>
+        <div class="nav-bar">
+            <div class="title">
+                <span>Budget Tracker</span>
+            </div>
+            <div class="nav-bar-item">
+                <span><a href="index.html">Dashboard</a></span>
+            </div>
+            <div class="nav-bar-item">
+                <span><a href="receipts.html">Receipts</a></span>
+            </div>
+            <div class="nav-bar-item">
+                <span><a href="add-receipt.html">Add Receipt</a></span>
+            </div>
+            <div class="nav-bar-item active">
+                <span><a href="categories.html">Categories</a></span>
+            </div>
+            <div class="nav-bar-right">
+                <a href="profile.html" class="nav-user" id="nav-user"></a>
+                <div class="nav-bar-notifications">
+                    <img src="assets/icons/notifications.svg">
+                </div>
+            </div>
+        </div>
+
+        <div class="categories-header">
+            <h2>Categories</h2>
+            <button class="add-category-btn" id="add-category-btn">+ Add Category</button>
+        </div>
+
+        <div class="type-summary">
+            <div class="type-card need">
+                <h4>Needs</h4>
+                <p id="needs-total">0.00</p>
+                <span id="needs-count">0 categories</span>
+            </div>
+            <div class="type-card want">
+                <h4>Wants</h4>
+                <p id="wants-total">0.00</p>
+                <span id="wants-count">0 categories</span>
+            </div>
+        </div>
+
+        <div class="categories-table-wrapper">
+            <table class="categories-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Total Spent</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="categories-body"></tbody>
+            </table>
+        </div>
+
+        <div class="modal-overlay" id="modal-overlay">
+            <div class="modal">
+                <button class="modal-close" id="modal-close">✖</button>
+                <h3 id="modal-title">Add Category</h3>
+                <div class="modal-field">
+                    <label>Name</label>
+                    <input type="text" id="modal-name" placeholder="Category name">
+                </div>
+                <div class="modal-field">
+                    <label>Type</label>
+                    <select id="modal-type">
+                        <option value="Need">Need</option>
+                        <option value="Want">Want</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button class="save-btn" id="modal-save-btn">Save</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

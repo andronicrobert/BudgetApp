@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Budget Tracker - Profile</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/profile.css">
+        <script src="scripts/data.js"></script>
+        <script src="scripts/auth.js"></script>
+        <script src="scripts/nav.js" defer></script>
+        <script src="scripts/profile.js" defer></script>
+    </head>
+    <body>
+        <div class="nav-bar">
+            <div class="title">
+                <span>Budget Tracker</span>
+            </div>
+            <div class="nav-bar-item">
+                <span><a href="index.html">Dashboard</a></span>
+            </div>
+            <div class="nav-bar-item">
+                <span><a href="receipts.html">Receipts</a></span>
+            </div>
+            <div class="nav-bar-item">
+                <span><a href="add-receipt.html">Add Receipt</a></span>
+            </div>
+            <div class="nav-bar-item">
+                <span><a href="categories.html">Categories</a></span>
+            </div>
+            <div class="nav-bar-right">
+                <a href="profile.html" class="nav-user nav-user-active" id="nav-user"></a>
+                <div class="nav-bar-notifications">
+                    <img src="assets/icons/notifications.svg">
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-header">
+            <h2>Profile</h2>
+        </div>
+
+        <div class="profile-layout">
+
+            <!-- Left: avatar + stats -->
+            <div class="profile-left">
+                <div class="profile-card">
+                    <div class="profile-avatar" id="profile-avatar"></div>
+                    <h3 id="profile-name"></h3>
+                    <p id="profile-username"></p>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+
+                <div class="profile-card stats-card">
+                    <h4>Account Stats</h4>
+                    <div class="stat-row">
+                        <span>Total Receipts</span>
+                        <strong id="stat-receipts">—</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span>Total Spent</span>
+                        <strong id="stat-total">—</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span>Top Category</span>
+                        <strong id="stat-top-category">—</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span>Categories</span>
+                        <strong id="stat-categories">—</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: edit settings -->
+            <div class="profile-right">
+                <div class="profile-card">
+                    <div class="profile-card-header">
+                        <h4>Settings</h4>
+                        <button class="edit-toggle-btn" id="edit-toggle-btn">Edit</button>
+                    </div>
+
+                    <div class="settings-form">
+                        <div class="settings-row">
+                            <label>Full Name</label>
+                            <input type="text" id="setting-name" disabled>
+                        </div>
+                        <div class="settings-row">
+                            <label>Username</label>
+                            <input type="text" id="setting-username" disabled>
+                        </div>
+                        <div class="settings-row">
+                            <label>Password</label>
+                            <input type="password" id="setting-password" disabled placeholder="••••••••">
+                        </div>
+                        <div class="settings-row">
+                            <label>Currency</label>
+                            <select id="setting-currency" disabled>
+                                <option value="RON">RON</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                            </select>
+                        </div>
+                        <div class="settings-row">
+                            <label>Monthly Salary</label>
+                            <input type="number" id="setting-salary" disabled>
+                        </div>
+                        <div class="settings-row">
+                            <label>Monthly Budget</label>
+                            <input type="number" id="setting-budget" disabled>
+                        </div>
+
+                        <div class="settings-actions" id="settings-actions" style="display:none;">
+                            <button class="save-settings-btn" id="save-settings-btn">Save Changes</button>
+                            <button class="cancel-settings-btn" id="cancel-settings-btn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
