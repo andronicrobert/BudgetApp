@@ -16,8 +16,6 @@ function updateForm() {
     }
 }
 
-// run once on load
 updateForm();
 
-// run on change
 select.addEventListener("change", updateForm);

@@ -1,47 +1,162 @@
-.add-receipt-header{
+.add-receipt-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-left: 50px;
-    padding-right: 100px;
-    padding-top: 50px
+    padding: 24px 32px 12px;
 }
 
-.add-receipt-header h2{
+.add-receipt-header h2 {
     font-family: Arial, sans-serif;
     font-weight: 600;
     font-size: 25px;
 }
 
-.add-receipt-form form{
-    display: flex;
-    flex-direction: column;
-    padding: 50px;
-    padding-top:30px;
-    font-family: Arial, sans-serif;
-    font-size: 17px;
-}
+/* ── Form Card ── */
 
 .add-receipt-form {
-    width: 38%;
+    margin: 0 32px 32px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 32px;
+    max-width: 600px;
 }
+
+.add-receipt-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* ── Form Elements ── */
+
+.element-add-receipt {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.element-add-receipt label {
+    font-weight: 600;
+    color: #555;
+    font-size: 13px;
+}
+
+.element-add-receipt input,
+.element-add-receipt select {
+    padding: 9px 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 7px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    background: white;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.element-add-receipt input:focus,
+.element-add-receipt select:focus {
+    border-color: rgb(150, 78, 201);
+}
+
 .form-auto,
-.form-manual{
+.form-manual {
     display: none;
 }
 
-.submit-button{
-    width:30%;
+.form-auto .element-add-receipt {
+    gap: 6px;
 }
 
-.element-add-receipt{
-    display:flex;
-    flex-direction: column;
-    padding-top: 5px;
-    padding-bottom: 5px;
+
+.items-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 12px;
+    font-size: 14px;
 }
 
-.add-receipt-form td{
-    padding:5px;
+.items-table th {
+    text-align: left;
+    padding: 10px 8px;
+    background: #f5f5f5;
+    font-weight: 600;
+    color: #444;
+    border-bottom: 1px solid #ebebeb;
 }
-    
+
+.items-table td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.items-table input,
+.items-table select {
+    width: 100%;
+    padding: 7px 10px;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.items-table input:focus,
+.items-table select:focus {
+    border-color: rgb(150, 78, 201);
+}
+
+.remove-item {
+    background: #fde8e8;
+    color: #e74c3c;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.2s;
+}
+
+.remove-item:hover {
+    background: #fbd0d0;
+}
+
+
+#add-item-btn {
+    background: #f0e6fa;
+    color: rgb(150, 78, 201);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+#add-item-btn:hover {
+    background: #e2d0f5;
+}
+
+
+.submit-button {
+    background-color: rgb(150, 78, 201);
+    color: white;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 7px;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    align-self: flex-start;
+}
+
+.submit-button:hover {
+    background-color: rgb(120, 55, 170);
+}
