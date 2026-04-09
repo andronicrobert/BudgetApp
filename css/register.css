@@ -1,4 +1,4 @@
-.login-page {
+.register-page {
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -6,7 +6,7 @@
     background-color: #fbfbfb;
 }
 
-.login-card {
+.register-card {
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.10);
@@ -15,14 +15,14 @@
     max-width: 90vw;
 }
 
-.login-logo span {
+.register-logo span {
     font-family: Arial, sans-serif;
     color: rgb(150, 78, 201);
     font-weight: 600;
     font-size: 26px;
 }
 
-.login-card h2 {
+.register-card h2 {
     font-family: Arial, sans-serif;
     font-size: 22px;
     font-weight: 700;
@@ -31,28 +31,28 @@
     margin-bottom: 4px;
 }
 
-.login-subtitle {
+.register-subtitle {
     font-family: Arial, sans-serif;
     font-size: 14px;
     color: #999;
     margin-bottom: 28px;
 }
 
-.login-field {
+.register-field {
     display: flex;
     flex-direction: column;
     gap: 6px;
     margin-bottom: 16px;
 }
 
-.login-field label {
+.register-field label {
     font-family: Arial, sans-serif;
     font-size: 13px;
     font-weight: 600;
     color: #555;
 }
 
-.login-field input {
+.register-field input {
     padding: 10px 14px;
     border: 1px solid #dcdcdc;
     border-radius: 7px;
@@ -62,11 +62,11 @@
     transition: border-color 0.2s;
 }
 
-.login-field input:focus {
+.register-field input:focus {
     border-color: rgb(150, 78, 201);
 }
 
-.login-error {
+.register-error {
     display: none;
     color: #e74c3c;
     font-family: Arial, sans-serif;
@@ -74,7 +74,7 @@
     margin-bottom: 12px;
 }
 
-.login-btn {
+.register-btn {
     width: 100%;
     background-color: rgb(150, 78, 201);
     color: white;
@@ -89,26 +89,17 @@
     margin-top: 4px;
 }
 
-.login-btn:hover {
+.register-btn:hover {
     background-color: rgb(120, 55, 170);
 }
 
-.register-btn {
-    width: 100%;
-    background-color: rgb(80, 78, 201);
-    color: white;
-    border: none;
-    padding: 11px;
-    margin-top:  12px;
+.register-field select {
+    padding: 9px 12px;
+    border: 1px solid #dcdcdc;
     border-radius: 7px;
-    font-size: 15px;
+    font-size: 14px;
     font-family: Arial, sans-serif;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s;
-    margin-top: 12px;
-}
-
-.register-btn:hover {
-    background-color: rgb(57, 55, 170);
+    background: white;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
 }

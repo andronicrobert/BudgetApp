@@ -1,27 +1,31 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
 
-    const user = getLoggedInUser();
+    const user = await requireLogin();
+    if (!user) return;
 
-    const receiptsBody = document.getElementById("receipts-body");
-    const selectAll = document.getElementById("select-all");
+    const receiptsBody     = document.getElementById("receipts-body");
+    const selectAll        = document.getElementById("select-all");
     const deleteSelectedBtn = document.getElementById("delete-selected-btn");
-    const modalOverlay = document.getElementById("modal-overlay");
-    const modalClose = document.getElementById("modal-close");
-    const modalEditBtn = document.getElementById("modal-edit-btn");
-    const modalDeleteBtn = document.getElementById("modal-delete-btn");
+    const modalOverlay     = document.getElementById("modal-overlay");
+    const modalClose       = document.getElementById("modal-close");
+    const modalEditBtn     = document.getElementById("modal-edit-btn");
+    const modalDeleteBtn   = document.getElementById("modal-delete-btn");
 
+    let receipts = [];
     let currentReceiptId = null;
 
-
-    function getUserReceipts() {
-        return receipts.filter((r) => r.userId === user.id);
+    // ── Fetch receipts from API ──
+    async function loadReceipts() {
+        const res = await api("get_receipts.php");
+        receipts = await res.json();
+        renderReceipts();
     }
 
-
+    // ── Render Table ──
     function renderReceipts() {
         receiptsBody.innerHTML = "";
 
-        getUserReceipts().forEach((receipt) => {
+        receipts.forEach((receipt) => {
             const tr = document.createElement("tr");
             tr.dataset.id = receipt.id;
 
@@ -29,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <td><input type="checkbox" class="row-checkbox"></td>
                 <td>${receipt.merchant}</td>
                 <td>${receipt.category}</td>
-                <td>${receipt.total.toFixed(2)} ${receipt.currency}</td>
+                <td>${parseFloat(receipt.total).toFixed(2)} ${receipt.currency}</td>
                 <td>${formatDate(receipt.date)}</td>
             `;
 
@@ -50,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
         updateSelectAll();
     }
 
-
+    // ── Helpers ──
     function formatDate(dateStr) {
         const [year, month, day] = dateStr.split("-");
         return `${day}/${month}/${year}`;
@@ -66,12 +70,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function updateSelectAll() {
-        const all = document.querySelectorAll(".row-checkbox");
+        const all     = document.querySelectorAll(".row-checkbox");
         const checked = document.querySelectorAll(".row-checkbox:checked");
         selectAll.checked = all.length > 0 && all.length === checked.length;
     }
 
-
+    // ── Select All ──
     selectAll.addEventListener("change", () => {
         document.querySelectorAll(".row-checkbox").forEach((cb) => {
             cb.checked = selectAll.checked;
@@ -79,17 +83,14 @@ document.addEventListener("DOMContentLoaded", () => {
         updateDeleteBtn();
     });
 
-
-    deleteSelectedBtn.addEventListener("click", () => {
+    // ── Bulk Delete ──
+    deleteSelectedBtn.addEventListener("click", async () => {
         const ids = getCheckedIds();
-        ids.forEach((id) => {
-            const index = receipts.findIndex((r) => r.id === id);
-            if (index !== -1) receipts.splice(index, 1);
-        });
-        renderReceipts();
+        await Promise.all(ids.map((id) => api("delete_receipt.php", "POST", { id })));
+        await loadReceipts();
     });
 
-
+    // ── Modal ──
     function openModal(id) {
         const receipt = receipts.find((r) => r.id === id);
         if (!receipt) return;
@@ -97,11 +98,11 @@ document.addEventListener("DOMContentLoaded", () => {
         currentReceiptId = id;
 
         document.getElementById("modal-merchant").textContent = receipt.merchant;
-        document.getElementById("modal-date").textContent = formatDate(receipt.date);
-        document.getElementById("modal-payment").textContent = receipt.paymentMethod;
+        document.getElementById("modal-date").textContent     = formatDate(receipt.date);
+        document.getElementById("modal-payment").textContent  = receipt.paymentMethod;
         document.getElementById("modal-currency").textContent = receipt.currency;
         document.getElementById("modal-category").textContent = receipt.category;
-        document.getElementById("modal-total").textContent = `${receipt.total.toFixed(2)} ${receipt.currency}`;
+        document.getElementById("modal-total").textContent    = `${parseFloat(receipt.total).toFixed(2)} ${receipt.currency}`;
 
         const modalItemsBody = document.getElementById("modal-items-body");
         modalItemsBody.innerHTML = "";
@@ -111,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
             tr.innerHTML = `
                 <td>${item.name}</td>
                 <td>${item.qty}</td>
-                <td>${item.price.toFixed(2)}</td>
+                <td>${parseFloat(item.price).toFixed(2)}</td>
                 <td>${(item.qty * item.price).toFixed(2)}</td>
             `;
             modalItemsBody.appendChild(tr);
@@ -130,16 +131,17 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target === modalOverlay) closeModal();
     });
 
-    modalDeleteBtn.addEventListener("click", () => {
-        const index = receipts.findIndex((r) => r.id === currentReceiptId);
-        if (index !== -1) receipts.splice(index, 1);
+    // ── Modal Delete ──
+    modalDeleteBtn.addEventListener("click", async () => {
+        await api("delete_receipt.php", "POST", { id: currentReceiptId });
         closeModal();
-        renderReceipts();
+        await loadReceipts();
     });
 
+    // ── Modal Edit ──
     modalEditBtn.addEventListener("click", () => {
         window.location.href = `add-receipt.html?edit=${currentReceiptId}`;
     });
 
-    renderReceipts();
+    await loadReceipts();
 });
