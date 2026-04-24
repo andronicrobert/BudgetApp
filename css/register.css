@@ -6,6 +6,16 @@
     background-color: #fbfbfb;
 }
 
+.error-message {
+    background-color: #fee2e2;
+    color: #dc2626;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-bottom: 16px;
+    font-family: Arial, sans-serif;
+}
+
 .register-card {
     background: white;
     border-radius: 12px;

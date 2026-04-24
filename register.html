@@ -4,6 +4,7 @@
         <title>Budget Tracker - Register</title>
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/register.css">
+        <script src="scripts/register.js"></script>
         <script src="scripts/auth.js"></script>
     </head>
     <body>
@@ -16,6 +17,7 @@
                 <p class="register-subtitle">Create Your Account</p>
 
                 <form id="register-form">
+                    <div id="error-msg" class="error-message" style="display: none;"></div>
                     <div class="register-field">
                         <label for="username">Username</label>
                         <input type="text" id="username" placeholder="Enter your username" autocomplete="username">
