@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const modalTitle     = document.getElementById("modal-title");
     const modalName      = document.getElementById("modal-name");
     const modalType      = document.getElementById("modal-type");
+    const modalBudgetLimit = document.getElementById("modal-budget-limit");
     const modalSaveBtn   = document.getElementById("modal-save-btn");
 
     let categories = [];
@@ -57,12 +58,25 @@ document.addEventListener("DOMContentLoaded", async () => {
             const total = getCategoryTotal(cat.name);
             const tr = document.createElement("tr");
 
+            const limit = parseFloat(cat.budget_limit) || 0;
+            const budgetLimitText = limit > 0 ? `${limit.toFixed(2)} ${user.currency}` : "—";
+
+            let totalSpentHtml = `${total.toFixed(2)} ${user.currency}`;
+            if (limit > 0) {
+                const percent = Math.min((total / limit) * 100, 100).toFixed(0);
+                let color = "green";
+                if (percent >= 80) color = "red";
+                else if (percent >= 50) color = "orange";
+                totalSpentHtml += `<br><small style="color: ${color}; font-weight: bold;">${percent}% used</small>`;
+            }
+
             tr.innerHTML = `
                 <td>${cat.name}</td>
                 <td><span class="badge ${cat.type.toLowerCase()}">${cat.type}</span></td>
-                <td>${total.toFixed(2)} ${user.currency}</td>
+                <td>${budgetLimitText}</td>
+                <td>${totalSpentHtml}</td>
                 <td>
-                    <button class="action-btn rename-btn" data-id="${cat.id}" data-name="${cat.name}">Rename</button>
+                    <button class="action-btn rename-btn" data-id="${cat.id}">Edit</button>
                     <button class="action-btn delete-cat-btn" data-id="${cat.id}">Delete</button>
                 </td>
             `;
@@ -79,7 +93,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.querySelectorAll(".rename-btn").forEach((btn) => {
             btn.addEventListener("click", () => {
                 const id   = parseInt(btn.dataset.id);
-                const name = btn.dataset.name;
                 const cat  = categories.find((c) => c.id === id);
                 if (!cat) return;
                 openModal("rename", cat);
@@ -99,7 +112,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     function openModal(mode, cat = null) {
         modalName.value        = cat ? cat.name : "";
         modalType.value        = cat ? cat.type : "Need";
-        modalTitle.textContent = mode === "add" ? "Add Category" : "Rename Category";
+        modalBudgetLimit.value = cat && cat.budget_limit > 0 ? parseFloat(cat.budget_limit).toFixed(2) : "";
+        modalTitle.textContent = mode === "add" ? "Add Category" : "Edit Category";
         editingId              = cat ? cat.id : null;
         editingOldName         = cat ? cat.name : null;
         modalOverlay.classList.add("active");
@@ -122,6 +136,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     modalSaveBtn.addEventListener("click", async () => {
         const name = modalName.value.trim();
         const type = modalType.value;
+        const budget_limit = parseFloat(modalBudgetLimit.value) || 0.00;
 
         if (!name) {
             modalName.style.borderColor = "#e74c3c";
@@ -134,10 +149,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                 id: editingId,
                 name,
                 type,
+                budget_limit,
                 oldName: editingOldName
             });
         } else {
-            await api("add_category.php", "POST", { name, type });
+            await api("add_category.php", "POST", { name, type, budget_limit });
         }
 
         closeModal();

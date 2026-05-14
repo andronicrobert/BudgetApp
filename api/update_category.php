@@ -13,6 +13,7 @@ $data    = json_decode(file_get_contents("php://input"), true);
 $id      = intval($data["id"]   ?? 0);
 $name    = trim($data["name"]   ?? "");
 $type    = trim($data["type"]   ?? "");
+$budget_limit = floatval($data["budget_limit"] ?? 0.00);
 $oldName = trim($data["oldName"] ?? "");
 
 if (!$id || !$name || !$type) {
@@ -22,8 +23,8 @@ if (!$id || !$name || !$type) {
 }
 
 // Update category
-$stmt = $pdo->prepare("UPDATE categories SET name=?, type=? WHERE id=? AND userId=?");
-$stmt->execute([$name, $type, $id, $_SESSION["userId"]]);
+$stmt = $pdo->prepare("UPDATE categories SET name=?, type=?, budget_limit=? WHERE id=? AND userId=?");
+$stmt->execute([$name, $type, $budget_limit, $id, $_SESSION["userId"]]);
 
 // Update receipts that used the old category name
 if ($oldName && $oldName !== $name) {
