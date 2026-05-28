@@ -28,11 +28,13 @@ $_SESSION["userId"] = $user["id"];
 
 // Return user data (never return password)
 echo json_encode([
-    "id"       => $user["id"],
-    "username" => $user["username"],
-    "name"     => $user["name"],
-    "currency" => $user["currency"],
-    "salary"   => $user["salary"],
-    "budget"   => $user["budget"]
+    "id"           => $user["id"],
+    "username"     => $user["username"],
+    "name"         => $user["name"],
+    "currency"     => $user["currency"],
+    "salary"       => $user["salary"],
+    "budget"       => $user["budget"],
+    "needs_budget" => $user["needs_budget"],
+    "wants_budget" => $user["wants_budget"]
 ]);
 ?>

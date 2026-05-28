@@ -27,7 +27,7 @@
                 <span><a href="categories.html">Categories</a></span>
             </div>
             <div class="nav-bar-right">
-                <a href="profile.html" class="nav-user" id="nav-user"></a>
+                <a href="profile.php" class="nav-user" id="nav-user"></a>
                 <div class="nav-bar-notifications">
                     <img src="assets/icons/notifications.svg">
                 </div>
@@ -37,7 +37,11 @@
             <h2>Dashboard Overview</h2>
             <div class="period-select">
                 <label>Period:</label>
-                <input type="month" id="period">
+                <div class="interval-inputs">
+                    <input type="date" id="start-period">
+                    <span class="period-separator">to</span>
+                    <input type="date" id="end-period">
+                </div>
             </div>
         </div>
         <div class="stat-cards">
@@ -67,6 +71,28 @@
                     <h4>Number of Receipts</h4>
                     <p id="num-receipts">—</p>
                 </div>
+            </div>
+        </div>
+        <div class="budget-overview">
+            <div class="budget-card">
+                <div class="budget-card-header">
+                    <h3>Needs Budget</h3>
+                    <p id="needs-budget-status">0.00 / 0.00</p>
+                </div>
+                <div class="budget-meter">
+                    <div class="budget-meter-fill needs" id="needs-budget-fill"></div>
+                </div>
+                <p class="budget-note" id="needs-budget-remaining">Set a needs budget in profile.</p>
+            </div>
+            <div class="budget-card">
+                <div class="budget-card-header">
+                    <h3>Wants Budget</h3>
+                    <p id="wants-budget-status">0.00 / 0.00</p>
+                </div>
+                <div class="budget-meter">
+                    <div class="budget-meter-fill wants" id="wants-budget-fill"></div>
+                </div>
+                <p class="budget-note" id="wants-budget-remaining">Set a wants budget in profile.</p>
             </div>
         </div>
         <div class="charts">

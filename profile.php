@@ -1,3 +1,21 @@
+<?php
+session_start();
+require "api/db.php";
+
+if (!isset($_SESSION["userId"])) {
+    header("Location: login.html");
+    exit;
+}
+
+$stmt = $pdo->prepare("SELECT id, username, name, currency, salary, budget, needs_budget, wants_budget FROM users WHERE id = ?");
+$stmt->execute([$_SESSION["userId"]]);
+$user = $stmt->fetch();
+
+if (!$user) {
+    header("Location: login.html");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,6 +25,9 @@
         <script src="scripts/data.js"></script>
         <script src="scripts/auth.js"></script>
         <script src="scripts/nav.js" defer></script>
+        <script>
+            window.currentUser = <?= json_encode($user, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>;
+        </script>
         <script src="scripts/profile.js" defer></script>
     </head>
     <body>
@@ -27,7 +48,7 @@
                 <span><a href="categories.html">Categories</a></span>
             </div>
             <div class="nav-bar-right">
-                <a href="profile.html" class="nav-user nav-user-active" id="nav-user"></a>
+                <a href="profile.php" class="nav-user nav-user-active" id="nav-user"></a>
                 <div class="nav-bar-notifications">
                     <img src="assets/icons/notifications.svg">
                 </div>

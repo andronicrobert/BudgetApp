@@ -9,7 +9,7 @@ if (!isset($_SESSION["userId"])) {
     exit;
 }
 
-$stmt = $pdo->prepare("SELECT id, username, name, currency, salary, budget FROM users WHERE id = ?");
+$stmt = $pdo->prepare("SELECT id, username, name, currency, salary, budget, needs_budget, wants_budget FROM users WHERE id = ?");
 $stmt->execute([$_SESSION["userId"]]);
 $user = $stmt->fetch();
 

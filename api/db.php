@@ -2,7 +2,7 @@
 $host = "localhost";
 $db   = "budgetapp";
 $user = "root";
-$pass = "boss";
+$pass = "";
 $charset = "utf8mb4";
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

@@ -7,14 +7,27 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const currency = user.currency;
 
-    const periodInput    = document.getElementById("period");
-    const totalSpentEl   = document.getElementById("total-spent");
-    const topCategoryEl  = document.getElementById("top-category");
-    const numReceiptsEl  = document.getElementById("num-receipts");
+    const startPeriodInput = document.getElementById("start-period");
+    const endPeriodInput   = document.getElementById("end-period");
+    const totalSpentEl     = document.getElementById("total-spent");
+    const topCategoryEl    = document.getElementById("top-category");
+    const numReceiptsEl    = document.getElementById("num-receipts");
+    const needsBudgetStatusEl    = document.getElementById("needs-budget-status");
+    const wantsBudgetStatusEl    = document.getElementById("wants-budget-status");
+    const needsBudgetRemainingEl = document.getElementById("needs-budget-remaining");
+    const wantsBudgetRemainingEl = document.getElementById("wants-budget-remaining");
+    const needsBudgetFillEl      = document.getElementById("needs-budget-fill");
+    const wantsBudgetFillEl      = document.getElementById("wants-budget-fill");
 
-    // ── Set default period to current month ──
+    // ── Set default interval to current month ──
     const now = new Date();
-    periodInput.value = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const firstOfMonth = `${year}-${month}-01`;
+    const lastOfMonth = new Date(year, now.getMonth() + 1, 0);
+    const lastOfMonthStr = `${year}-${month}-${String(lastOfMonth.getDate()).padStart(2, "0")}`;
+    startPeriodInput.value = firstOfMonth;
+    endPeriodInput.value = lastOfMonthStr;
 
     let allReceipts  = [];
     let allCategories = [];
@@ -34,11 +47,20 @@ document.addEventListener("DOMContentLoaded", async () => {
         updateStats();
     }
 
-    // ── Filter receipts by selected period ──
+    // ── Filter receipts by selected interval ──
     function getFilteredReceipts() {
-        const selected = periodInput.value;
-        if (!selected) return allReceipts;
-        return allReceipts.filter((r) => r.date.startsWith(selected));
+        const start = startPeriodInput.value;
+        const end = endPeriodInput.value;
+        if (!start && !end) return allReceipts;
+
+        const minDate = start && end && start > end ? end : start;
+        const maxDate = start && end && start > end ? start : end;
+
+        return allReceipts.filter((r) => {
+            if (minDate && r.date < minDate) return false;
+            if (maxDate && r.date > maxDate) return false;
+            return true;
+        });
     }
 
     // ── Calculate top category ──
@@ -61,6 +83,46 @@ document.addEventListener("DOMContentLoaded", async () => {
         numReceiptsEl.textContent = filtered.length;
 
         updateCharts(filtered);
+        updateBudgetOverview(filtered);
+    }
+
+    // ── Budget overview ──
+    function updateBudgetOverview(filtered) {
+        const categoryType = Object.fromEntries(allCategories.map((c) => [c.name, c.type]));
+
+        const needsSpent = filtered.reduce((sum, r) => categoryType[r.category] === "Need" ? sum + r.total : sum, 0);
+        const wantsSpent = filtered.reduce((sum, r) => categoryType[r.category] === "Want" ? sum + r.total : sum, 0);
+        const needsBudget = parseFloat(user.needs_budget || 0);
+        const wantsBudget = parseFloat(user.wants_budget || 0);
+
+        const needsLeft = needsBudget - needsSpent;
+        const wantsLeft = wantsBudget - wantsSpent;
+
+        needsBudgetStatusEl.textContent = needsBudget > 0
+            ? `${needsSpent.toFixed(2)} / ${needsBudget.toFixed(2)} ${currency}`
+            : `0.00 / 0.00 ${currency}`;
+        wantsBudgetStatusEl.textContent = wantsBudget > 0
+            ? `${wantsSpent.toFixed(2)} / ${wantsBudget.toFixed(2)} ${currency}`
+            : `0.00 / 0.00 ${currency}`;
+
+        needsBudgetRemainingEl.textContent = needsBudget > 0
+            ? (needsLeft >= 0
+                ? `${needsLeft.toFixed(2)} ${currency} left`
+                : `Over budget by ${Math.abs(needsLeft).toFixed(2)} ${currency}`)
+            : "Set a needs budget in profile.";
+        wantsBudgetRemainingEl.textContent = wantsBudget > 0
+            ? (wantsLeft >= 0
+                ? `${wantsLeft.toFixed(2)} ${currency} left`
+                : `Over budget by ${Math.abs(wantsLeft).toFixed(2)} ${currency}`)
+            : "Set a wants budget in profile.";
+
+        const needsPercent = needsBudget > 0 ? Math.min((needsSpent / needsBudget) * 100, 100) : 0;
+        const wantsPercent = wantsBudget > 0 ? Math.min((wantsSpent / wantsBudget) * 100, 100) : 0;
+
+        needsBudgetFillEl.style.width = `${needsPercent}%`;
+        wantsBudgetFillEl.style.width = `${wantsPercent}%`;
+        needsBudgetFillEl.style.background = needsBudget > 0 && needsSpent > needsBudget ? "#f87171" : "linear-gradient(90deg,#60a5fa,#3b82f6)";
+        wantsBudgetFillEl.style.background = wantsBudget > 0 && wantsSpent > wantsBudget ? "#ef4444" : "linear-gradient(90deg,#fbbf24,#f97316)";
     }
 
     // ── Charts ──
@@ -121,6 +183,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    periodInput.addEventListener("change", updateStats);
+    startPeriodInput.addEventListener("change", updateStats);
+    endPeriodInput.addEventListener("change", updateStats);
     await loadData();
 });

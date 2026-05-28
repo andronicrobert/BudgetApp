@@ -17,9 +17,11 @@ $password = is_string($password) ? trim($password) : "";
 if ($password === "undefined") {
     $password = "";
 }
-$currency = trim($data["currency"] ?? "");
-$salary   = floatval($data["salary"] ?? 0);
-$budget   = floatval($data["budget"] ?? 0);
+$currency     = trim($data["currency"] ?? "");
+$salary       = floatval($data["salary"] ?? 0);
+$budget       = floatval($data["budget"] ?? 0);
+$needsBudget  = floatval($data["needs_budget"] ?? 0);
+$wantsBudget  = floatval($data["wants_budget"] ?? 0);
 
 if (!$name || !$username || !$currency) {
     http_response_code(400);
@@ -27,8 +29,8 @@ if (!$name || !$username || !$currency) {
     exit;
 }
 
-$sql = "UPDATE users SET name=?, username=?, currency=?, salary=?, budget=?";
-$params = [$name, $username, $currency, $salary, $budget];
+$sql = "UPDATE users SET name=?, username=?, currency=?, salary=?, budget=?, needs_budget=?, wants_budget=?";
+$params = [$name, $username, $currency, $salary, $budget, $needsBudget, $wantsBudget];
 
 if ($password !== "") {
     $sql .= ", password=?";

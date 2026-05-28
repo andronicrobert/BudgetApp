@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-    const user = await requireLogin();
+    const user = window.currentUser || await requireLogin();
     if (!user) return;
+    window.currentUser = user;
 
     let editing = false;
 
@@ -20,6 +21,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById("setting-currency").value = user.currency;
         document.getElementById("setting-salary").value   = user.salary;
         document.getElementById("setting-budget").value   = user.budget;
+        document.getElementById("setting-needs-budget").value = user.needs_budget ?? 0;
+        document.getElementById("setting-wants-budget").value = user.wants_budget ?? 0;
 
         // Stats
         const [receiptsRes, categoriesRes] = await Promise.all([
@@ -54,7 +57,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // ── Edit toggle ──
     const editToggleBtn  = document.getElementById("edit-toggle-btn");
     const settingsActions = document.getElementById("settings-actions");
-    const fields = ["setting-name", "setting-username", "setting-password", "setting-currency", "setting-salary", "setting-budget"];
+    const fields = ["setting-name", "setting-username", "setting-password", "setting-currency", "setting-salary", "setting-budget", "setting-needs-budget", "setting-wants-budget"];
 
     function setEditing(state) {
         editing = state;
@@ -74,25 +77,29 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // ── Save settings ──
     document.getElementById("save-settings-btn").addEventListener("click", async () => {
-        const name     = document.getElementById("setting-name").value.trim();
-        const username = document.getElementById("setting-username").value.trim().toLowerCase();
-        const password = document.getElementById("setting-password").value.trim();
-        const currency = document.getElementById("setting-currency").value;
-        const salary   = parseFloat(document.getElementById("setting-salary").value) || 0;
-        const budget   = parseFloat(document.getElementById("setting-budget").value) || 0;
+        const name        = document.getElementById("setting-name").value.trim();
+        const username    = document.getElementById("setting-username").value.trim().toLowerCase();
+        const password    = document.getElementById("setting-password").value.trim();
+        const currency    = document.getElementById("setting-currency").value;
+        const salary      = parseFloat(document.getElementById("setting-salary").value) || 0;
+        const budget      = parseFloat(document.getElementById("setting-budget").value) || 0;
+        const needsBudget = parseFloat(document.getElementById("setting-needs-budget").value) || 0;
+        const wantsBudget = parseFloat(document.getElementById("setting-wants-budget").value) || 0;
 
         if (!name || !username || !password) return;
 
-        const res = await api("update_user.php", "POST", { name, username, password, currency, salary, budget });
+        const res = await api("update_user.php", "POST", { name, username, password, currency, salary, budget, needs_budget: needsBudget, wants_budget: wantsBudget });
 
         if (res.ok) {
             // Update local user object so the page reflects changes immediately
-            user.name     = name;
-            user.username = username;
-            user.password = password;
-            user.currency = currency;
-            user.salary   = salary;
-            user.budget   = budget;
+            user.name         = name;
+            user.username     = username;
+            user.password     = password;
+            user.currency     = currency;
+            user.salary       = salary;
+            user.budget       = budget;
+            user.needs_budget = needsBudget;
+            user.wants_budget = wantsBudget;
 
             setEditing(false);
             await loadProfile();

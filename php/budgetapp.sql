@@ -153,6 +153,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `currency` varchar(3) COLLATE utf8mb4_general_ci NOT NULL,
   `salary` decimal(10,2) NOT NULL DEFAULT '0.00',
   `budget` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `needs_budget` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `wants_budget` decimal(10,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -160,12 +162,12 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `name`, `currency`, `salary`, `budget`) VALUES
-(1, 'john', 'john123', 'John Donovan', 'RON', 5000.00, 3000.00),
-(2, 'maria', 'maria123', 'Maria Pop', 'RON', 4200.00, 2500.00),
-(3, 'alex', 'alex123', 'Alex Ionescu', 'EUR', 2000.00, 1200.00),
-(4, 'george', 'george123', 'George Popescu', 'RON', 2000.00, 1800.00),
-(5, 'ionut', 'ionut123', 'Ionut', 'RON', 0.00, 0.00);
+INSERT INTO `users` (`id`, `username`, `password`, `name`, `currency`, `salary`, `budget`, `needs_budget`, `wants_budget`) VALUES
+(1, 'john', 'john123', 'John Donovan', 'RON', 5000.00, 3000.00, 1500.00, 500.00),
+(2, 'maria', 'maria123', 'Maria Pop', 'RON', 4200.00, 2500.00, 1800.00, 500.00),
+(3, 'alex', 'alex123', 'Alex Ionescu', 'EUR', 2000.00, 1200.00, 900.00, 300.00),
+(4, 'george', 'george123', 'George Popescu', 'RON', 2000.00, 1800.00, 1200.00, 400.00),
+(5, 'ionut', 'ionut123', 'Ionut', 'RON', 0.00, 0.00, 0.00, 0.00);
 
 --
 -- Constraints for dumped tables
